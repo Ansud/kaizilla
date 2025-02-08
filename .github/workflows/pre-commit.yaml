@@ -1,0 +1,14 @@
+---
+name: pre-commit checks
+
+on:
+  pull_request: null
+  push: null
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v3
+    - uses: pre-commit/action@v3.0.1
