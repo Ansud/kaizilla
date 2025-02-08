@@ -20,3 +20,8 @@ pip install -r requirements.txt
 python3 kaizilla path_to_your_image.jpg
 ```
 
+## Badges
+
+[![Super-Linter](https://github.com/Ansud/kaizilla/actions/workflows/superlinter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/Ansud/kaizilla)
+![GitHub top language](https://img.shields.io/github/languages/top/Ansud/kaizilla)
