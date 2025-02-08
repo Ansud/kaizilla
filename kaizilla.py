@@ -11,7 +11,9 @@ def main(args: list[str]) -> None:
     )
     parser.add_argument("image_file", type=str, help="Image file to process [JPG]")
     # TODO: Select criticism language
-    parser.add_argument("-c", "--criticism", help="Display criticism about image")
+    parser.add_argument(
+        "-c", "--criticism", action=argparse.BooleanOptionalAction, help="Display criticism about image"
+    )
 
     arguments = parser.parse_args(args)
 
