@@ -5,7 +5,7 @@ from pathlib import Path
 from source import process_image
 
 
-async def main(args: list[str]) -> None:
+def main(args: list[str]) -> None:
     parser = argparse.ArgumentParser(
         description="Generate image description and keywords and put it into image metadata"
     )
