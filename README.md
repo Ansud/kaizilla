@@ -29,5 +29,6 @@ python3 kaizilla --criticism path_to_your_image.jpg
 ## Badges
 
 [![Super-Linter](https://github.com/Ansud/kaizilla/actions/workflows/superlinter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pre-commit/pre-commit.com/main.svg)](https://results.pre-commit.ci/latest/github/Ansud/kaizilla/main)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/Ansud/kaizilla)
 ![GitHub top language](https://img.shields.io/github/languages/top/Ansud/kaizilla)
