@@ -16,8 +16,14 @@ pip install -r requirements.txt
 ```
 
 ## Execute script
+You can just put metadata into image
 ```bash
 python3 kaizilla path_to_your_image.jpg
+```
+
+You can get some criticism from LLM about your image if you run script with `-c` or `--criticism` flag
+```bash
+python3 kaizilla --criticism path_to_your_image.jpg
 ```
 
 ## Badges
