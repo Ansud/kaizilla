@@ -1,17 +1,17 @@
 ---
 repos:
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.6.2
+    rev: v0.9.5
     hooks:
       - id: ruff
       - id: ruff-format
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.4.0
+    rev: v2.5.0
     hooks:
       - id: pycln
         args: ["--all"]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: "v4.6.0"
+    rev: "v5.0.0"
     hooks:
       - id: check-merge-conflict
       - id: end-of-file-fixer
@@ -45,7 +45,7 @@ repos:
         args: ["--allow-missing-credentials"]
       - id: detect-private-key
   - repo: https://github.com/asottile/pyupgrade
-    rev: "v3.17.0"
+    rev: "v3.19.1"
     hooks:
       - id: pyupgrade
         args: ["--py311-plus"]
