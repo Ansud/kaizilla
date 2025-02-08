@@ -1,7 +1,7 @@
 # kaizilla
 Small project to add descriptions and keywords to images with help of OpenAI LLM. Image itself is not affected anyhow, only EXIF, IPTC and XMP metadata is changed.
 
-Please note that you need to set description in EXIF data first, LLM can not deduce good image description just from image itself. You better to provide some meaningful description to direct model right path. 
+Please note that you need to set description in EXIF data first, LLM can not deduce good image description just from image itself. You better to provide some meaningful description to direct model right path.
 
 ## Preparation
 
