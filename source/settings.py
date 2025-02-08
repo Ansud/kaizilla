@@ -1,8 +1,9 @@
+import sys
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class KaizillaSettings(BaseSettings):
-    # TODO: Do not provide default value here, now it is only for testing purposes until i add .env file with dummy key
     OPENAI_API_KEY: str = ""
     OPENAI_MODEL: str = "gpt-4o-mini"
 
@@ -12,4 +13,20 @@ class KaizillaSettings(BaseSettings):
     model_config = SettingsConfigDict(case_sensitive=True)
 
 
-settings = KaizillaSettings()
+def validate_settings() -> KaizillaSettings:
+    settings = KaizillaSettings()
+
+    # It is hard to convert from ValidationError to user-friendly messages, thus do it hard way
+    errors: list[str] = []
+
+    if not settings.OPENAI_API_KEY:
+        errors.append("OPENAI_API_KEY is not set, please check your settings")
+
+    if errors:
+        print("\n".join(errors), file=sys.stderr)  # noqa:T201
+        sys.exit(-1)
+
+    return settings
+
+
+settings = validate_settings()
