@@ -38,3 +38,4 @@ python3 kaizilla --criticism path_to_your_image.jpg
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pre-commit/pre-commit.com/main.svg)](https://results.pre-commit.ci/latest/github/Ansud/kaizilla/main)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/Ansud/kaizilla)
 ![GitHub top language](https://img.shields.io/github/languages/top/Ansud/kaizilla)
+[![Coverage Status](https://coveralls.io/repos/github/Ansud/kaizilla/badge.svg)](https://coveralls.io/github/Ansud/kaizilla)
