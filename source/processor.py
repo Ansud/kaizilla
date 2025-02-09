@@ -11,12 +11,9 @@ from .models import CriticismData
 from .settings import settings
 
 
-def process_image(image_path: Path) -> CriticismData:
-    # Get image metadata to process
-    image_meta = ImageMetadata(image_path)
-
+def do_process_image(image_path: Path, meta: ImageMetadata) -> CriticismData:
     # Image must have description to point LLM to right way
-    description = image_meta.get_description()
+    description = meta.get_description()
 
     if description is None:
         print(f"Image {image_path} has no description", file=sys.stderr)  # noqa:T201
@@ -33,10 +30,13 @@ def process_image(image_path: Path) -> CriticismData:
 
     generated_data = generate_metadata_for_image(encoded, description)
 
-    image_meta.set_description(generated_data.description.wiki.en, generated_data.description.stock.en)
-    image_meta.set_keywords(generated_data.keywords)
-
-    # Do not use context manager, a bit useless here
-    image_meta.sync()
+    meta.set_description(generated_data.description.wiki.en, generated_data.description.stock.en)
+    meta.set_keywords(generated_data.keywords)
 
     return generated_data.criticism
+
+
+def process_image(image_path: Path) -> CriticismData:
+    # Get image metadata to process
+    with ImageMetadata(image_path) as image_meta:
+        return do_process_image(image_path, image_meta)

@@ -7,12 +7,14 @@ from PIL import Image
 
 from source.metadata import ImageMetadata
 
+# mypy: allow-untyped-decorators
+
 # Generate unique integers for run
 autoincr = itertools.count().__next__
 
 
-@pytest.fixture
-def response_fixture() -> dict:
+@pytest.fixture()
+def response_fixture() -> dict[str, object]:
     response = {
         "reasoning": {"quality": ["I thought a bit."], "image_description_keywords": ["Some more thinking."]},
         "description": {

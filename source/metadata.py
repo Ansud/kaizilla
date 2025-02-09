@@ -1,10 +1,15 @@
+from __future__ import annotations
+
+import contextlib
 from pathlib import Path
+from types import TracebackType
 from typing import ClassVar, cast
 
 import exiv2
+from typing_extensions import override
 
 
-class ImageMetadata:
+class ImageMetadata(contextlib.AbstractContextManager["ImageMetadata"]):
     EXIF_DESCRIPTION_KEY: ClassVar[str] = "Exif.Image.ImageDescription"
     IPTC_DESCRIPTION_KEY: ClassVar[str] = "Iptc.Application2.ObjectName"
     XMP_DESCRIPTION_KEY: ClassVar[str] = "Xmp.dc.description"
@@ -19,6 +24,22 @@ class ImageMetadata:
     def __init__(self, image_path: Path) -> None:
         self.image = exiv2.ImageFactory.open(str(image_path))
         self.image.readMetadata()
+        self.has_changes = False
+
+    @override
+    def __enter__(self) -> ImageMetadata:
+        return self
+
+    @override
+    def __exit__(
+        self, exc_type: type[BaseException] | None, exc_inst: BaseException | None, exc_tb: TracebackType | None
+    ) -> None:
+        # Do not write anything if there was an exception
+        if exc_type is not None:
+            return
+
+        if self.has_changes:
+            self.sync()
 
     def get_description(self) -> str | None:
         def _get_description(data: exiv2.IptcData | exiv2.ExifData | exiv2.XmpData, key: str) -> str | None:
@@ -56,6 +77,8 @@ class ImageMetadata:
         self.image.setIptcData(iptc_data)
         self.image.setXmpData(xmp_data)
 
+        self.has_changes = True
+
     def set_keywords(self, keywords: list[str]) -> None:
         iptc_data = self.image.iptcData()
         xmp_data = self.image.xmpData()
@@ -85,6 +108,8 @@ class ImageMetadata:
 
         self.image.setIptcData(iptc_data)
         self.image.setXmpData(xmp_data)
+
+        self.has_changes = True
 
     def sync(self) -> None:
         self.image.writeMetadata()
