@@ -39,3 +39,8 @@ Your task is to analyze an image and its provided text description, then generat
 Make sure your analysis is practical and provides actionable insights for improving stock photo performance.
 Avoid unnecessary verbosity while ensuring clarity and completeness.
 """
+
+NOT_VALID_JSON_PROMPT = """
+Your response contains invalid JSON.
+Please ensure all fields are structured correctly and contain no placeholders and formatting.
+"""
