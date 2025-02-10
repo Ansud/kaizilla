@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class ReasoningData(BaseModel):
@@ -17,8 +17,8 @@ class DescriptionByType(BaseModel):
 
 
 class CriticismData(BaseModel):
-    improvements: str = Field(default="")
-    strengths: str = Field(default="")
+    improvements: str
+    strengths: str
 
 
 class ResponseData(BaseModel):

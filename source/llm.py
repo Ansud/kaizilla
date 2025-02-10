@@ -8,7 +8,7 @@ openai_client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 
 def generate_metadata_for_image(image_data: str, description: str) -> ResponseData:
-    response = openai_client.chat.completions.create(
+    response = openai_client.beta.chat.completions.parse(
         model=settings.OPENAI_MODEL,
         messages=[
             {"role": "system", "content": [{"type": "text", "text": IMAGE_DESCRIPTION_PROMPT}]},
@@ -21,10 +21,11 @@ def generate_metadata_for_image(image_data: str, description: str) -> ResponseDa
             },
         ],
         max_tokens=1500,
+        response_format=ResponseData,
     )
 
-    if response.choices[0].message.content is None:
+    if response.choices[0].message.parsed is None:
         raise NotImplementedError("Invalid response from OpenAI API")
 
     # TODO: Ask for retries if the response is not valid JSON
-    return ResponseData.model_validate_json(response.choices[0].message.content)
+    return response.choices[0].message.parsed
