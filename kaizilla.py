@@ -10,6 +10,9 @@ def main(args: list[str]) -> None:
         description="Generate image description and keywords and put it into image metadata"
     )
     parser.add_argument("image_file", type=str, help="Image file to process [JPG]")
+    parser.add_argument(
+        "-d", "--description", type=str, help="Image initial description, if not provided, will be taken from metadata"
+    )
     # TODO: Select criticism language
     parser.add_argument(
         "-c", "--criticism", action=argparse.BooleanOptionalAction, help="Display criticism about image"
@@ -23,7 +26,10 @@ def main(args: list[str]) -> None:
         print(f"File not found: {image_file_path}", file=sys.stderr)  # noqa:T201
         sys.exit(-1)
 
-    criticism = process_image(arguments.image_file)
+    try:
+        criticism = process_image(arguments.image_file, arguments.description)
+    except ValueError:
+        sys.exit(-2)
 
     if arguments.criticism:
         print(f"Improvements: {criticism.improvements}")  # noqa:T201

@@ -11,13 +11,13 @@ from .models import CriticismData
 from .settings import settings
 
 
-def do_process_image(image_path: Path, meta: ImageMetadata) -> CriticismData:
+def do_process_image(image_path: Path, meta: ImageMetadata, description_in: str | None) -> CriticismData:
     # Image must have description to point LLM to right way
-    description = meta.get_description()
+    description = description_in or meta.get_description()
 
     if description is None:
         print(f"Image {image_path} has no description", file=sys.stderr)  # noqa:T201
-        return CriticismData()
+        raise ValueError(f"Image {image_path} has no description")
 
     # Create image thumbnail, it is not good idea to send megabytes of data to OpenAI LLM, it is costly
     with Image.open(str(image_path)) as image_file:
@@ -36,7 +36,7 @@ def do_process_image(image_path: Path, meta: ImageMetadata) -> CriticismData:
     return generated_data.criticism
 
 
-def process_image(image_path: Path) -> CriticismData:
+def process_image(image_path: Path, description_in: str | None) -> CriticismData:
     # Get image metadata to process
     with ImageMetadata(image_path) as image_meta:
-        return do_process_image(image_path, image_meta)
+        return do_process_image(image_path, image_meta, description_in)
