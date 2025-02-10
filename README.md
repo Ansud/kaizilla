@@ -49,6 +49,14 @@ Run the script to insert metadata into an image:
 python3 kaizilla path_to_your_image.jpg
 ```
 
+### Adding Metadata to an Image with description in command line
+
+You can run the script with description in command line instead of EXIF to insert metadata into an image:
+
+```bash
+python3 kaizilla --description "Portrait of cat looking at tuna fish in Kuala-Lumpur aquarium" path_to_your_image.jpg
+```
+
 ### Critique Mode
 
 Enable critique mode to get feedback on the description:
@@ -69,6 +77,7 @@ Kaizilla supports JPEG image format and **may be** other formats that support EX
 
 ## Command-Line Options
 
+- `-d`, `--description` – Provide image description to be used to help generating metadata.
 - `-c`, `--criticism` – Enables critique mode for analyzing the provided description.
 - `-h`, `--help` – Displays usage instructions.
 
