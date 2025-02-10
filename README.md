@@ -6,7 +6,7 @@ Kaizilla is a small utility that enhances image metadata by adding descriptions 
 
 - Automatically generates and inserts meaningful descriptions and keywords into image metadata.
 - Supports EXIF, IPTC, and XMP metadata formats.
-- Optional critique mode to analyze the provided description.
+- Optional critique mode to analyze the provided image
 - Simple command-line usage.
 
 ## How It Works
