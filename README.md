@@ -54,8 +54,14 @@ python3 kaizilla path_to_your_image.jpg
 Enable critique mode to get feedback on the description:
 
 ```bash
-python3 kaizilla --criticism path_to_your_image.jpg
+python3 kaizilla.py --criticism path_to_your_image.jpg
 ```
+
+You will receive a critique of the description, including suggestions for improvement. For example (output may vary):
+
+**Improvements**: To enhance the photo's appeal, consider adjusting the contrast and vibrance to make the colors pop more. Including more foreground elements could also enhance depth.
+
+**Strengths**: The serene composition and effective use of the winding path create a captivating visual journey. The lighting, emblematic of the golden hour, beautifully complements the natural environment.
 
 ## Supported Formats
 
