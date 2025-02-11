@@ -92,3 +92,5 @@ Kaizilla is released under the GPL-3.0 license. See the [LICENSE](LICENSE) file 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/Ansud/kaizilla)
 ![GitHub top language](https://img.shields.io/github/languages/top/Ansud/kaizilla)
 [![Coverage Status](https://coveralls.io/repos/github/Ansud/kaizilla/badge.svg)](https://coveralls.io/github/Ansud/kaizilla)
+![Static Badge](https://img.shields.io/badge/type%20checked-mypy-039dfc)
+[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
