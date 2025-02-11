@@ -27,5 +27,4 @@ def generate_metadata_for_image(image_data: str, description: str) -> ResponseDa
     if response.choices[0].message.parsed is None:
         raise NotImplementedError("Invalid response from OpenAI API")
 
-    # TODO: Ask for retries if the response is not valid JSON
     return response.choices[0].message.parsed
