@@ -5,6 +5,28 @@ import exiv2
 from source.metadata import ImageMetadata
 
 
+def validate_image_metadata(
+    image_path: Path, description_short: str, description_long: str, keywords: list[str]
+) -> None:
+    image = exiv2.ImageFactory.open(str(image_path))
+    image.readMetadata()
+
+    exif = image.exifData()
+    iptc = image.iptcData()
+    xmp = image.xmpData()
+
+    assert exif[ImageMetadata.EXIF_DESCRIPTION_KEY].toString() == description_short
+    assert iptc[ImageMetadata.IPTC_DESCRIPTION_KEY].toString() == description_short
+    assert xmp[ImageMetadata.XMP_DESCRIPTION_KEY].toString() == f"{ImageMetadata.XMP_LANGUAGE} {description_short}"
+    assert iptc[ImageMetadata.IPTC_LONG_DESCRIPTION_KEY].toString() == description_long
+    assert xmp[ImageMetadata.XMP_LONG_DESCRIPTION_KEY].toString() == f"{ImageMetadata.XMP_LANGUAGE} {description_long}"
+    assert xmp[ImageMetadata.XMP_KEYWORDS_KEY].toString() == "; ".join(keywords)
+
+    keywords_key = exiv2.IptcKey(ImageMetadata.IPTC_KEYWORDS_KEY)
+    keywords_set = {item.toString() for item in iptc.findKey(keywords_key)}
+    assert keywords_set == set(keywords)
+
+
 def test_get_description_not_present(test_image: Path) -> None:
     with ImageMetadata(test_image) as meta:
         assert meta.get_description() is None
@@ -46,22 +68,4 @@ def test_saved(test_image_with_exif_description: Path) -> None:
         meta.set_description(new_description_long, new_description_short)
         meta.set_keywords(keywords)
 
-    image = exiv2.ImageFactory.open(str(test_image_with_exif_description))
-    image.readMetadata()
-
-    exif = image.exifData()
-    iptc = image.iptcData()
-    xmp = image.xmpData()
-
-    assert exif[ImageMetadata.EXIF_DESCRIPTION_KEY].toString() == new_description_short
-    assert iptc[ImageMetadata.IPTC_DESCRIPTION_KEY].toString() == new_description_short
-    assert xmp[ImageMetadata.XMP_DESCRIPTION_KEY].toString() == f"{ImageMetadata.XMP_LANGUAGE} {new_description_short}"
-    assert iptc[ImageMetadata.IPTC_LONG_DESCRIPTION_KEY].toString() == new_description_long
-    assert (
-        xmp[ImageMetadata.XMP_LONG_DESCRIPTION_KEY].toString() == f"{ImageMetadata.XMP_LANGUAGE} {new_description_long}"
-    )
-    assert xmp[ImageMetadata.XMP_KEYWORDS_KEY].toString() == "; ".join(keywords)
-
-    keywords_key = exiv2.IptcKey(ImageMetadata.IPTC_KEYWORDS_KEY)
-    keywords_set = {item.toString() for item in iptc.findKey(keywords_key)}
-    assert keywords_set == set(keywords)
+    validate_image_metadata(test_image_with_exif_description, new_description_short, new_description_long, keywords)

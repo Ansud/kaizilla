@@ -6,6 +6,7 @@ import pytest
 from PIL import Image
 
 from source.metadata import ImageMetadata
+from source.models import ResponseData
 
 # mypy: allow-untyped-decorators
 
@@ -13,7 +14,7 @@ from source.metadata import ImageMetadata
 autoincr = itertools.count().__next__
 
 
-@pytest.fixture()
+@pytest.fixture
 def response_fixture() -> dict[str, object]:
     response = {
         "reasoning": {"quality": ["I thought a bit."], "image_description_keywords": ["Some more thinking."]},
@@ -29,6 +30,11 @@ def response_fixture() -> dict[str, object]:
 
 
 @pytest.fixture
+def response_fixture_typed(response_fixture: dict[str, object]) -> ResponseData:
+    return ResponseData.model_validate(response_fixture)
+
+
+@pytest.fixture
 def test_image(tmp_path: Path) -> Path:
     im = Image.frombytes("L", (10, 10), b"\x00" * 10 * 10)
     image_path = tmp_path / f"test_image_{autoincr()}.jpg"
@@ -38,11 +44,16 @@ def test_image(tmp_path: Path) -> Path:
 
 
 @pytest.fixture
-def test_image_with_exif_description(test_image: Path) -> Path:
+def exif_description() -> str:
+    return "Test description exif"
+
+
+@pytest.fixture
+def test_image_with_exif_description(test_image: Path, exif_description: str) -> Path:
     image = exiv2.ImageFactory.open(str(test_image))
 
     exif_data = image.exifData()
-    exif_data[ImageMetadata.EXIF_DESCRIPTION_KEY] = "Test description exif"
+    exif_data[ImageMetadata.EXIF_DESCRIPTION_KEY] = exif_description
     image.setExifData(exif_data)
 
     image.writeMetadata()
