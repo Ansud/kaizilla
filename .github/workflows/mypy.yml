@@ -1,9 +1,9 @@
-name: Mypy
+---
+name: mypy checks
 
 on:
-  push:
-    paths:
-      - "*.py"
+  push: null
+  pull_request: null
 
 jobs:
   mypy:
@@ -12,7 +12,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.7.4
+          python-version: 3.11
           architecture: x64
       - name: Checkout
         uses: actions/checkout@v3
