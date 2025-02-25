@@ -345,9 +345,9 @@ pydantic-core==2.27.2 \
     --hash=sha256:fa8e459d4954f608fa26116118bb67f56b93b209c39b008277ace29937453dc9 \
     --hash=sha256:fd1aea04935a508f62e0d0ef1f5ae968774a32afc306fb8545e06f5ff5cdf3ad
     # via pydantic
-pydantic-settings==2.7.1 \
-    --hash=sha256:10c9caad35e64bfb3c2fbf70a078c0e25cc92499782e5200747f942a065dec93 \
-    --hash=sha256:590be9e6e24d06db33a4262829edef682500ef008565a969c73d39d5f8bfb3fd
+pydantic-settings==2.8.0 \
+    --hash=sha256:88e2ca28f6e68ea102c99c3c401d6c9078e68a5df600e97b43891c34e089500a \
+    --hash=sha256:c782c7dc3fb40e97b238e713c25d26f64314aece2e91abcff592fcac15f71820
     # via -r requirements.in
 python-dotenv==1.0.1 \
     --hash=sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca \
