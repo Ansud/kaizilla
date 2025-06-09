@@ -3,8 +3,10 @@ name: mypy checks
 
 on:
   push: null
-  pull_request: null
-
+  pull_request:
+    branches:
+    - main
+    
 jobs:
   mypy:
     runs-on: ubuntu-latest
