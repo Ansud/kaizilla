@@ -3,7 +3,9 @@ name: Run tests
 
 on: # yamllint disable-line rule:truthy
   push: null
-  pull_request: null
+  pull_request:
+    branches:
+    - master
 
 permissions: {}
 
