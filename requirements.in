@@ -2,5 +2,5 @@ pillow==11.2.1
 exiv2==0.17.3
 openai==1.93.0
 pydantic==2.10.6
-pydantic-settings==2.10.0
+pydantic-settings==2.10.1
 httpx==0.28.1
