@@ -1,5 +1,6 @@
 import base64
 import sys
+from collections.abc import Iterable
 from io import BytesIO
 from pathlib import Path
 
@@ -9,6 +10,23 @@ from .llm import generate_metadata_for_image
 from .metadata import ImageMetadata
 from .models import CriticismData
 from .settings import settings
+
+
+def cleanup_keywords(keywords: list[str]) -> Iterable[str]:
+    # Some thoughts:
+    # 1. Keywords can be duplicated
+    # 2. Keywords can be in different cases
+    # 3. Keywords can be in this format: """keyword"""
+    output: set[str] = set()
+
+    for k in keywords:
+        k = k.strip().lower()
+        k = k.strip('"').strip("'")
+
+        output.add(k)
+
+    # Do not convert back to list, it is unnecessary
+    return output
 
 
 def do_process_image(image_path: Path, meta: ImageMetadata, description_in: str | None) -> CriticismData:
@@ -29,9 +47,10 @@ def do_process_image(image_path: Path, meta: ImageMetadata, description_in: str 
         encoded = base64.b64encode(buffered.getvalue()).decode("utf-8")
 
     generated_data = generate_metadata_for_image(encoded, description)
+    keywords = cleanup_keywords(generated_data.keywords)
 
     meta.set_description(generated_data.description.wiki.en, generated_data.description.stock.en)
-    meta.set_keywords(generated_data.keywords)
+    meta.set_keywords(keywords)
 
     return generated_data.criticism
 

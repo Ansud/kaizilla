@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import contextlib
+from collections.abc import Iterable
 from pathlib import Path
 from types import TracebackType
 from typing import ClassVar, cast
@@ -79,7 +80,7 @@ class ImageMetadata(contextlib.AbstractContextManager["ImageMetadata"]):
 
         self.has_changes = True
 
-    def set_keywords(self, keywords: list[str]) -> None:
+    def set_keywords(self, keywords: Iterable[str]) -> None:
         iptc_data = self.image.iptcData()
         xmp_data = self.image.xmpData()
 
