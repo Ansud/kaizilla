@@ -20,11 +20,14 @@ def validate_image_metadata(
     assert xmp[ImageMetadata.XMP_DESCRIPTION_KEY].toString() == f"{ImageMetadata.XMP_LANGUAGE} {description_short}"
     assert iptc[ImageMetadata.IPTC_LONG_DESCRIPTION_KEY].toString() == description_long
     assert xmp[ImageMetadata.XMP_LONG_DESCRIPTION_KEY].toString() == f"{ImageMetadata.XMP_LANGUAGE} {description_long}"
-    assert xmp[ImageMetadata.XMP_KEYWORDS_KEY].toString() == "; ".join(keywords)
 
+    keywords_set = set(keywords)
+    xmp_keywords = set(xmp[ImageMetadata.XMP_KEYWORDS_KEY].toString().split("; "))
     keywords_key = exiv2.IptcKey(ImageMetadata.IPTC_KEYWORDS_KEY)
-    keywords_set = {item.toString() for item in iptc.findKey(keywords_key)}
-    assert keywords_set == set(keywords)
+    keywords_iptc = {item.toString() for item in iptc.findKey(keywords_key)}
+
+    assert keywords_set == keywords_iptc
+    assert keywords_set == xmp_keywords
 
 
 def test_get_description_not_present(test_image: Path) -> None:

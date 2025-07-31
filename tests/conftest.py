@@ -30,8 +30,28 @@ def response_fixture() -> dict[str, object]:
 
 
 @pytest.fixture
+def response_fixture_messy() -> dict[str, object]:
+    response = {
+        "reasoning": {"quality": ["I thought a bit."], "image_description_keywords": ["Some more thinking."]},
+        "description": {
+            "wiki": {"en": "This is good photo", "ru": "Хорошая фотография"},
+            "stock": {"en": "This is photo", "ru": "Это фото"},
+        },
+        "keywords": ["1", "2", "3", "1", '"""2"""', "Keyword with spaces", "KEYWORD WITH SPACES", "''strip it''"],
+        "criticism": {"improvements": "Do not do bad things", "strengths": "Do good things"},
+    }
+
+    return response
+
+
+@pytest.fixture
 def response_fixture_typed(response_fixture: dict[str, object]) -> ResponseData:
     return ResponseData.model_validate(response_fixture)
+
+
+@pytest.fixture
+def response_fixture_messy_typed(response_fixture_messy: dict[str, object]) -> ResponseData:
+    return ResponseData.model_validate(response_fixture_messy)
 
 
 @pytest.fixture
