@@ -155,9 +155,9 @@ jiter==0.8.2 \
     --hash=sha256:fc9043259ee430ecd71d178fccabd8c332a3bf1e81e50cae43cc2b28d19e4cb7 \
     --hash=sha256:ffd9fee7d0775ebaba131f7ca2e2d83839a62ad65e8e02fe2bd8fc975cedeb9e
     # via openai
-openai==1.99.6 \
-    --hash=sha256:e40d44b2989588c45ce13819598788b77b8fb80ba2f7ae95ce90d14e46f1bd26 \
-    --hash=sha256:f48f4239b938ef187062f3d5199a05b69711d8b600b9a9b6a3853cd271799183
+openai==1.101.0 \
+    --hash=sha256:29f56df2236069686e64aca0e13c24a4ec310545afb25ef7da2ab1a18523f22d \
+    --hash=sha256:6539a446cce154f8d9fb42757acdfd3ed9357ab0d34fcac11096c461da87133b
     # via -r requirements.in
 pillow==11.3.0 \
     --hash=sha256:023f6d2d11784a465f09fd09a34b150ea4672e85fb3d05931d89f373ab14abb2 \
