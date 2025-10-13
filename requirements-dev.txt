@@ -596,9 +596,9 @@ pytest-cov==7.0.0 \
     --hash=sha256:33c97eda2e049a0c5298e91f519302a1334c26ac65c1a483d6206fd458361af1 \
     --hash=sha256:3b8e9558b16cc1479da72058bdecf8073661c7f57f7d3c5f22a1c23507f2d861
     # via -r requirements-dev.in
-pytest-env==1.1.5 \
-    --hash=sha256:91209840aa0e43385073ac464a554ad2947cc2fd663a9debf88d03b01e0cc1cf \
-    --hash=sha256:ce90cf8772878515c24b31cd97c7fa1f4481cd68d588419fd45f10ecaee6bc30
+pytest-env==1.2.0 \
+    --hash=sha256:475e2ebe8626cee01f491f304a74b12137742397d6c784ea4bc258f069232b80 \
+    --hash=sha256:d7e5b7198f9b83c795377c09feefa45d56083834e60d04767efd64819fc9da00
     # via -r requirements-dev.in
 python-dotenv==1.0.1 \
     --hash=sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca \
