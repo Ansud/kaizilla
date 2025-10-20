@@ -67,7 +67,7 @@ python3 kaizilla.py --criticism path_to_your_image.jpg
 
 You will receive a critique of the description, including suggestions for improvement. For example (output may vary):
 
-```
+``bash
 Improvements: To enhance the photo's appeal, consider adjusting the contrast and
 vibrance to make the colors pop more. Including more foreground elements could also
 enhance depth.
