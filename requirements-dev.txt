@@ -891,13 +891,13 @@ pytest-cov==7.0.0 \
     --hash=sha256:33c97eda2e049a0c5298e91f519302a1334c26ac65c1a483d6206fd458361af1 \
     --hash=sha256:3b8e9558b16cc1479da72058bdecf8073661c7f57f7d3c5f22a1c23507f2d861
     # via -r requirements-dev.in
-pytest-env==1.5.0 \
-    --hash=sha256:89a15686ac837c9cd009a8a2d52bd55865e2f23c82094247915dae4540c87161 \
-    --hash=sha256:db8994b9ce170f135a37acc09ac753a6fc697d15e691b576ed8d8ca261c40246
+pytest-env==1.6.0 \
+    --hash=sha256:1e7f8a62215e5885835daaed694de8657c908505b964ec8097a7ce77b403d9a3 \
+    --hash=sha256:ac02d6fba16af54d61e311dd70a3c61024a4e966881ea844affc3c8f0bf207d3
     # via -r requirements-dev.in
-python-dotenv==1.2.1 \
-    --hash=sha256:42667e897e16ab0d66954af0e60a9caa94f0fd4ecf3aaf6d2d260eec1aa36ad6 \
-    --hash=sha256:b81ee9561e9ca4004139c6cbba3a238c32b03e4894671e181b671e8cb8425d61
+python-dotenv==1.2.2 \
+    --hash=sha256:1d8214789a24de455a8b8bd8ae6fe3c6b69a5e3d64aa8a8e5d68e694bbcb285a \
+    --hash=sha256:2c371a91fbd7ba082c2c1dc1f8bf89ca22564a087c2c287cd9b662adde799cf3
     # via
     #   pydantic-settings
     #   pytest-env
