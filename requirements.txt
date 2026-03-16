@@ -220,9 +220,9 @@ jiter==0.11.0 \
     --hash=sha256:fb4790497369d134a07fc763cc88888c46f734abdd66f9fdf7865038bf3a8f40 \
     --hash=sha256:ff85fc6d2a431251ad82dbd1ea953affb5a60376b62e7d6809c5cd058bb39471
     # via openai
-openai==2.26.0 \
-    --hash=sha256:6151bf8f83802f036117f06cc8a57b3a4da60da9926826cc96747888b57f394f \
-    --hash=sha256:b41f37c140ae0034a6e92b0c509376d907f3a66109935fba2c1b471a7c05a8fb
+openai==2.28.0 \
+    --hash=sha256:79aa5c45dba7fef84085701c235cf13ba88485e1ef4f8dfcedc44fc2a698fc1d \
+    --hash=sha256:bb7fdff384d2a787fa82e8822d1dd3c02e8cf901d60f1df523b7da03cbb6d48d
     # via -r requirements.in
 pillow==12.1.1 \
     --hash=sha256:02f84dfad02693676692746df05b89cf25597560db2857363a208e393429f5e9 \
