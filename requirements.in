@@ -1,4 +1,4 @@
-pillow==12.2.0
+pillow==12.3.0
 exiv2==0.18.1
 openai==2.44.0
 pydantic==2.13.4
